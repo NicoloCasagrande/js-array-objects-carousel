@@ -59,16 +59,6 @@ images.forEach(element => {
 
 console.log(images);
 
-// console.log(img);
-
-// // creo i div in cui andro a inserire le immagini
-// for (let i = 0; i < img.length; i++) {
-//     const divCreation = document.createElement(`div`);
-//     divCreation.classList.add('slide');
-//     divCreation.innerHTML = `<img src="${img[i]}" alt="">`;
-//     slider.append(divCreation);
-// }
-
 // seleziono il primo div e gli attribuisco la classe active
 document.querySelector('.slide').classList.add('active');
 document.querySelector('.inactive-img').classList.add('active-img');
@@ -82,12 +72,12 @@ const down = document.getElementById('arrow-down');
 // var elements = document.querySelectorAll('.slide');
 
 // con questa funzione, al click della freccia up rimuovo la classe active all'elemento attivo, creo un ciclo if per azzerare il contatore se siamo sull'ultima foto e poi applico la classe active al successivo elemento
-up.addEventListener('click', nextSlide);
+up.addEventListener('click', prevSlide);
 
 // con questa funzione, al click della freccia up rimuovo la classe active all'elemento attivo, creo un ciclo if per azzerare il contatore se siamo sull'ultima foto e poi applico la classe active al successivo elemento
-down.addEventListener('click', prevSlide);
+down.addEventListener('click', nextSlide);
 
-let autoplay = setInterval(nextSlide, 3000);
+// let autoplay = setInterval(nextSlide, 3000);
 
 function nextSlide(){
     // images[active].classList.remove('active');
@@ -148,10 +138,10 @@ function onClickSlide(){
     activatedSlide
 }
 
-slider.addEventListener('mouseenter', function(){
-     clearInterval(autoplay);
- });
+// slider.addEventListener('mouseenter', function(){
+//      clearInterval(autoplay);
+//  });
 
-slider.addEventListener('mouseleave', function(){
-    autoplay = setInterval(nextSlide, 3000);
-});
+// slider.addEventListener('mouseleave', function(){
+//     autoplay = setInterval(nextSlide, 3000);
+// });

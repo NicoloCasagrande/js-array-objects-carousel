@@ -72,11 +72,13 @@
 }
 
 #arrow-up{
-    top: .625rem;
+    bottom: .625rem;
     z-index: 999;
 }
 
 #arrow-down{
+    top: .625rem;
+    z-index: 999;
     bottom: .625rem;
     z-index: 999;
 }
