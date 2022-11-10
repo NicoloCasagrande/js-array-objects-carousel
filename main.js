@@ -27,6 +27,13 @@ const images = [
 // seleziono il contenitore delle mie immagini
 const slider = document.getElementById('image-container');
 const blockImg = document.getElementById('sub-image-container');
+slider.addEventListener('mouseenter', function(){
+    clearInterval(autoplay);
+});
+
+slider.addEventListener('mouseleave', function(){
+   autoplay = setInterval(nextSlide, 5000);
+});
 
 let i = 0;
 // creo l'aray in cui dovro inserire la stringa con gli src delle immagini
@@ -70,9 +77,15 @@ const down = document.getElementById('arrow-down');
 
 // con questa funzione, al click della freccia up rimuovo la classe active all'elemento attivo, creo un ciclo if per azzerare il contatore se siamo sull'ultima foto e poi applico la classe active al successivo elemento
 up.addEventListener('click', prevSlide);
+up.addEventListener('click', function(){
+    clearInterval(autoplay);
+});
 
 // con questa funzione, al click della freccia up rimuovo la classe active all'elemento attivo, creo un ciclo if per azzerare il contatore se siamo sull'ultima foto e poi applico la classe active al successivo elemento
 down.addEventListener('click', nextSlide);
+down.addEventListener('click', function(){
+    clearInterval(autoplay);
+});
 
 let autoplay = setInterval(nextSlide, 5000);
 
@@ -122,15 +135,9 @@ function onClickSlide(){
     arrayImages[activatedSlideId].classList.add('active');
     subArrayImages[activatedSlideId].classList.add('active-img');
     active = activatedSlideId;
+    clearInterval(autoplay);
+    autoplay = setInterval(nextSlide, 5000);
 }
-
-slider.addEventListener('mouseenter', function(){
-     clearInterval(autoplay);
-});
-
-slider.addEventListener('mouseleave', function(){
-    autoplay = setInterval(nextSlide, 3000);
-});
 
 function slideSlide(){
     const arrayImages = document.querySelectorAll('.slide');
