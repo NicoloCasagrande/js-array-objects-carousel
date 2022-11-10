@@ -78,6 +78,7 @@ function nextSlide(){
     }else{
         active++;
     }
+    
     const arrayImages = document.querySelectorAll('.slide');
     for (let i = 0; i < images.length; i++) {
         const checkImages = arrayImages[i];
@@ -90,12 +91,22 @@ function nextSlide(){
 
 function prevSlide(){
     // images[active].classList.remove('active');
+    const activeSlide = document.querySelector(`.active`);
+    activeSlide.classList.remove('active');
+    console.log(activeSlide);
     if(active===0){
         active = images.length - 1;
     }else{
         active--;
     }
-    images[active].classList.add('active');
+    const arrayImages = document.querySelectorAll('.slide');
+    for (let i = 0; i < images.length; i++) {
+        const checkImages = arrayImages[i];
+        const checkImagesId = Number(checkImages.getAttribute('divId'));
+        if(checkImagesId === active){
+            checkImages.classList.add('active');
+        }
+    }
 }
 
 slider.addEventListener('mouseenter', function(){
