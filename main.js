@@ -45,11 +45,14 @@ images.forEach(element => {
     i++;
 });
 
+i = 0;
+
 images.forEach(element => {
     const divCreation = document.createElement(`div`);
     divCreation.classList.add('inactive-img');
     divCreation.innerHTML = `<img src="${element.image}" alt="">`;
     divCreation.setAttribute('divId',i);
+    divCreation.addEventListener("click", onClickSlide);
     blockImg.append(divCreation);
     i++;
 });
@@ -92,7 +95,6 @@ function nextSlide(){
     const activeSubSlide = document.querySelector(`.active-img`);
     activeSlide.classList.remove('active');
     activeSubSlide.classList.remove('active-img');
-    console.log(activeSlide);
     if(active === images.length - 1){
         active = 0;
     }else{
@@ -118,7 +120,6 @@ function prevSlide(){
     const activeSubSlide = document.querySelector(`.active-img`);
     activeSlide.classList.remove('active');
     activeSubSlide.classList.remove('active-img');
-    console.log(activeSlide);
     if(active===0){
         active = images.length - 1;
     }else{
@@ -136,6 +137,15 @@ function prevSlide(){
             checkSubImages.classList.add('active-img');
         }
     }
+}
+
+function onClickSlide(){
+    const activatedSlide = this;
+    console.log(activatedSlide);
+    const activeSlide = document.querySelector('.slide.active');
+    console.log(activeSlide);
+    activeSlide.classList.remove('.active');
+    activatedSlide
 }
 
 slider.addEventListener('mouseenter', function(){
