@@ -47,6 +47,7 @@ images.forEach(element => {
 
 images.forEach(element => {
     const divCreation = document.createElement(`div`);
+    divCreation.classList.add('inactive-img');
     divCreation.innerHTML = `<img src="${element.image}" alt="">`;
     divCreation.setAttribute('divId',i);
     blockImg.append(divCreation);
@@ -67,6 +68,7 @@ console.log(images);
 
 // seleziono il primo div e gli attribuisco la classe active
 document.querySelector('.slide').classList.add('active');
+document.querySelector('.inactive-img').classList.add('active-img');
 
 let active = 0;
 
@@ -74,7 +76,7 @@ const up = document.getElementById('arrow-up');
 const down = document.getElementById('arrow-down');
 
 // creo un array contenente tutti i div con classe slide
-var elements = document.querySelectorAll('.slide');
+// var elements = document.querySelectorAll('.slide');
 
 // con questa funzione, al click della freccia up rimuovo la classe active all'elemento attivo, creo un ciclo if per azzerare il contatore se siamo sull'ultima foto e poi applico la classe active al successivo elemento
 up.addEventListener('click', nextSlide);
@@ -82,7 +84,7 @@ up.addEventListener('click', nextSlide);
 // con questa funzione, al click della freccia up rimuovo la classe active all'elemento attivo, creo un ciclo if per azzerare il contatore se siamo sull'ultima foto e poi applico la classe active al successivo elemento
 down.addEventListener('click', prevSlide);
 
-// let autoplay = setInterval(nextSlide, 3000);
+let autoplay = setInterval(nextSlide, 3000);
 
 function nextSlide(){
     // images[active].classList.remove('active');
@@ -94,7 +96,7 @@ function nextSlide(){
     }else{
         active++;
     }
-
+    
     const arrayImages = document.querySelectorAll('.slide');
     for (let i = 0; i < images.length; i++) {
         const checkImages = arrayImages[i];
@@ -125,10 +127,10 @@ function prevSlide(){
     }
 }
 
-// slider.addEventListener('mouseenter', function(){
-//     clearInterval(autoplay);
-// });
+slider.addEventListener('mouseenter', function(){
+     clearInterval(autoplay);
+ });
 
-// slider.addEventListener('mouseleave', function(){
-//     autoplay = setInterval(nextSlide, 3000);
-// });
+slider.addEventListener('mouseleave', function(){
+    autoplay = setInterval(nextSlide, 3000);
+});

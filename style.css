@@ -7,12 +7,13 @@
     width: 43.75rem;
     height: 18.75rem;
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3.125rem;
 }
 
 .img-container{
     width: 80%;
-    margin-left: auto;
-    margin-right: auto;
     position: relative;
 }
 
@@ -50,6 +51,14 @@
     object-fit: cover;
 }
 
+.inactive-img{
+    filter: grayscale(100%);
+}
+
+.active-img{
+    filter: none;
+}
+
 .arrow{
     position: absolute;
     height: 1.875rem;
@@ -64,10 +73,12 @@
 
 #arrow-up{
     top: .625rem;
+    z-index: 999;
 }
 
 #arrow-down{
     bottom: .625rem;
+    z-index: 999;
 }
 
 .slide{
