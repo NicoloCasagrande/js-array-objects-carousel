@@ -91,6 +91,11 @@ down.addEventListener('click', function(){
 
 let autoplay = setInterval(nextSlide, 5000);
 
+
+// FUNZIONI
+
+
+
 function nextSlide(){
     // images[active].classList.remove('active');
     const activeSlide = document.querySelector(`.active`);
