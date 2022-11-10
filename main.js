@@ -79,12 +79,14 @@ const down = document.getElementById('arrow-down');
 up.addEventListener('click', prevSlide);
 up.addEventListener('click', function(){
     clearInterval(autoplay);
+    autoplay = setInterval(nextSlide, 5000);
 });
 
 // con questa funzione, al click della freccia up rimuovo la classe active all'elemento attivo, creo un ciclo if per azzerare il contatore se siamo sull'ultima foto e poi applico la classe active al successivo elemento
 down.addEventListener('click', nextSlide);
 down.addEventListener('click', function(){
     clearInterval(autoplay);
+    autoplay = setInterval(nextSlide, 5000);
 });
 
 let autoplay = setInterval(nextSlide, 5000);
