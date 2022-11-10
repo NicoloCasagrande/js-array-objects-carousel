@@ -66,7 +66,7 @@ up.addEventListener('click', nextSlide);
 // con questa funzione, al click della freccia up rimuovo la classe active all'elemento attivo, creo un ciclo if per azzerare il contatore se siamo sull'ultima foto e poi applico la classe active al successivo elemento
 down.addEventListener('click', prevSlide);
 
-// let autoplay = setInterval(nextSlide, 3000);
+let autoplay = setInterval(nextSlide, 3000);
 
 function nextSlide(){
     // images[active].classList.remove('active');
@@ -81,9 +81,7 @@ function nextSlide(){
     const arrayImages = document.querySelectorAll('.slide');
     for (let i = 0; i < images.length; i++) {
         const checkImages = arrayImages[i];
-        console.log(checkImages);
-        const checkImagesId = checkImages.getAttribute('divId');
-        console.log(checkImagesId);
+        const checkImagesId = Number(checkImages.getAttribute('divId'));
         if(checkImagesId === active){
             checkImages.classList.add('active');
         }
@@ -100,10 +98,10 @@ function prevSlide(){
     images[active].classList.add('active');
 }
 
-// slider.addEventListener('mouseenter', function(){
-//     clearInterval(autoplay);
-// });
+slider.addEventListener('mouseenter', function(){
+    clearInterval(autoplay);
+});
 
-// slider.addEventListener('mouseleave', function(){
-//     autoplay = setInterval(nextSlide, 3000);
-// });
+slider.addEventListener('mouseleave', function(){
+    autoplay = setInterval(nextSlide, 3000);
+});
