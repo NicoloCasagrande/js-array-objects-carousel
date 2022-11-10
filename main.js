@@ -88,7 +88,6 @@ function nextSlide(){
         active++;
     }
     slideSlide();
-
 }
 
 function prevSlide(){
@@ -122,6 +121,7 @@ function onClickSlide(){
     console.log(arrayImages[activatedSlideId]);
     arrayImages[activatedSlideId].classList.add('active');
     subArrayImages[activatedSlideId].classList.add('active-img');
+    active = activatedSlideId;
 }
 
 slider.addEventListener('mouseenter', function(){
@@ -145,7 +145,6 @@ function slideSlide(){
             checkImages.classList.add('active');
             checkSubImages.classList.add('active-img');
             trovato = true;
-            active = index;
         }
         index++;
     }
