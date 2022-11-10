@@ -89,20 +89,25 @@ let autoplay = setInterval(nextSlide, 3000);
 function nextSlide(){
     // images[active].classList.remove('active');
     const activeSlide = document.querySelector(`.active`);
+    const activeSubSlide = document.querySelector(`.active-img`);
     activeSlide.classList.remove('active');
+    activeSubSlide.classList.remove('active-img');
     console.log(activeSlide);
     if(active === images.length - 1){
         active = 0;
     }else{
         active++;
     }
-    
+
     const arrayImages = document.querySelectorAll('.slide');
+    const subArrayImages = document.querySelectorAll('.inactive-img');
     for (let i = 0; i < images.length; i++) {
         const checkImages = arrayImages[i];
+        const checkSubImages = subArrayImages[i];
         const checkImagesId = Number(checkImages.getAttribute('divId'));
         if(checkImagesId === active){
             checkImages.classList.add('active');
+            checkSubImages.classList.add('active-img');
         }
     }
 }
@@ -110,19 +115,25 @@ function nextSlide(){
 function prevSlide(){
     // images[active].classList.remove('active');
     const activeSlide = document.querySelector(`.active`);
+    const activeSubSlide = document.querySelector(`.active-img`);
     activeSlide.classList.remove('active');
+    activeSubSlide.classList.remove('active-img');
     console.log(activeSlide);
     if(active===0){
         active = images.length - 1;
     }else{
         active--;
     }
+
     const arrayImages = document.querySelectorAll('.slide');
+    const subArrayImages = document.querySelectorAll('.inactive-img');
     for (let i = 0; i < images.length; i++) {
         const checkImages = arrayImages[i];
+        const checkSubImages = subArrayImages[i];
         const checkImagesId = Number(checkImages.getAttribute('divId'));
         if(checkImagesId === active){
             checkImages.classList.add('active');
+            checkSubImages.classList.add('active-img');
         }
     }
 }
