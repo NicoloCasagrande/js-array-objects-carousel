@@ -16,9 +16,25 @@
     position: relative;
 }
 
+.img-container h3{
+    position: absolute;
+    right: .9375rem;
+    bottom: 3.75rem;
+    color: white;
+}
+
+.img-container p{
+    position: absolute;
+    right: .9375rem;
+    top: 80%;
+    left: 2.5rem;
+    color: white;
+}
+
 #sub-image-container{
     width: 20%;
     height: 100%;
+    position: relative;
 }
 
 #sub-image-container img{
@@ -42,7 +58,7 @@
     line-height: 1.875rem;
     text-align: center;
     border-radius: 50%;
-    left: calc(50%);
+    left: 50%;
     cursor: pointer;
 }
 

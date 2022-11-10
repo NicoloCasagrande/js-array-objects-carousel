@@ -35,6 +35,12 @@ images.forEach(element => {
     divCreation.classList.add('slide');
     divCreation.innerHTML = `<img src="${element.image}" alt="">`;
     divCreation.setAttribute('divId',i);
+    const titleCreation = document.createElement('h3');
+    titleCreation.innerHTML = element.title;
+    const textCreation = document.createElement('p');
+    textCreation.innerHTML = element.text;
+    divCreation.append(titleCreation);
+    divCreation.append(textCreation);
     slider.append(divCreation);
     i++;
 });
