@@ -68,16 +68,13 @@ let active = 0;
 const up = document.getElementById('arrow-up');
 const down = document.getElementById('arrow-down');
 
-// creo un array contenente tutti i div con classe slide
-// var elements = document.querySelectorAll('.slide');
-
 // con questa funzione, al click della freccia up rimuovo la classe active all'elemento attivo, creo un ciclo if per azzerare il contatore se siamo sull'ultima foto e poi applico la classe active al successivo elemento
 up.addEventListener('click', prevSlide);
 
 // con questa funzione, al click della freccia up rimuovo la classe active all'elemento attivo, creo un ciclo if per azzerare il contatore se siamo sull'ultima foto e poi applico la classe active al successivo elemento
 down.addEventListener('click', nextSlide);
 
-// let autoplay = setInterval(nextSlide, 3000);
+let autoplay = setInterval(nextSlide, 5000);
 
 function nextSlide(){
     // images[active].classList.remove('active');
@@ -90,18 +87,8 @@ function nextSlide(){
     }else{
         active++;
     }
+    slideSlide();
 
-    const arrayImages = document.querySelectorAll('.slide');
-    const subArrayImages = document.querySelectorAll('.inactive-img');
-    for (let i = 0; i < images.length; i++) {
-        const checkImages = arrayImages[i];
-        const checkSubImages = subArrayImages[i];
-        const checkImagesId = Number(checkImages.getAttribute('divId'));
-        if(checkImagesId === active){
-            checkImages.classList.add('active');
-            checkSubImages.classList.add('active-img');
-        }
-    }
 }
 
 function prevSlide(){
@@ -115,33 +102,51 @@ function prevSlide(){
     }else{
         active--;
     }
-
-    const arrayImages = document.querySelectorAll('.slide');
-    const subArrayImages = document.querySelectorAll('.inactive-img');
-    for (let i = 0; i < images.length; i++) {
-        const checkImages = arrayImages[i];
-        const checkSubImages = subArrayImages[i];
-        const checkImagesId = Number(checkImages.getAttribute('divId'));
-        if(checkImagesId === active){
-            checkImages.classList.add('active');
-            checkSubImages.classList.add('active-img');
-        }
-    }
+    slideSlide();
+    
 }
 
 function onClickSlide(){
     const activatedSlide = this;
     console.log(activatedSlide);
     const activeSlide = document.querySelector('.slide.active');
+    const activeSubSlide = document.querySelector('.inactive-img.active-img');
     console.log(activeSlide);
-    activeSlide.classList.remove('.active');
-    activatedSlide
+    activeSlide.classList.remove('active');
+    activeSubSlide.classList.remove('active-img');
+    const activatedSlideId = activatedSlide.getAttribute('divId');
+    console.log(activatedSlideId);
+
+    const arrayImages = document.querySelectorAll('.slide');
+    const subArrayImages = document.querySelectorAll('.inactive-img');
+    console.log(arrayImages[activatedSlideId]);
+    arrayImages[activatedSlideId].classList.add('active');
+    subArrayImages[activatedSlideId].classList.add('active-img');
 }
 
-// slider.addEventListener('mouseenter', function(){
-//      clearInterval(autoplay);
-//  });
+slider.addEventListener('mouseenter', function(){
+     clearInterval(autoplay);
+});
 
-// slider.addEventListener('mouseleave', function(){
-//     autoplay = setInterval(nextSlide, 3000);
-// });
+slider.addEventListener('mouseleave', function(){
+    autoplay = setInterval(nextSlide, 3000);
+});
+
+function slideSlide(){
+    const arrayImages = document.querySelectorAll('.slide');
+    const subArrayImages = document.querySelectorAll('.inactive-img');
+    let index = 0;
+    let trovato = false;
+    while(trovato === false){
+        const checkImages = arrayImages[index];
+        const checkSubImages = subArrayImages[index];
+        const checkImagesId = Number(checkImages.getAttribute('divId'));
+        if(checkImagesId === active){
+            checkImages.classList.add('active');
+            checkSubImages.classList.add('active-img');
+            trovato = true;
+            active = index;
+        }
+        index++;
+    }
+}
