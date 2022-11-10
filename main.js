@@ -26,14 +26,28 @@ const images = [
 
 // seleziono il contenitore delle mie immagini
 const slider = document.getElementById('image-container');
-
+let i = 0;
 // creo l'aray in cui dovro inserire la stringa con gli src delle immagini
 images.forEach(element => {
     const divCreation = document.createElement(`div`);
     divCreation.classList.add('slide');
     divCreation.innerHTML = `<img src="${element.image}" alt="">`;
+    divCreation.setAttribute('divId',i);
     slider.append(divCreation);
+    i++;
 });
+
+console.log(images);
+
+// console.log(img);
+
+// // creo i div in cui andro a inserire le immagini
+// for (let i = 0; i < img.length; i++) {
+//     const divCreation = document.createElement(`div`);
+//     divCreation.classList.add('slide');
+//     divCreation.innerHTML = `<img src="${img[i]}" alt="">`;
+//     slider.append(divCreation);
+// }
 
 // seleziono il primo div e gli attribuisco la classe active
 document.querySelector('.slide').classList.add('active');
@@ -55,29 +69,41 @@ down.addEventListener('click', prevSlide);
 // let autoplay = setInterval(nextSlide, 3000);
 
 function nextSlide(){
-    elements[active].classList.remove('active');
-    if(active===img.length - 1){
+    // images[active].classList.remove('active');
+    const activeSlide = document.querySelector(`.active`);
+    activeSlide.classList.remove('active');
+    console.log(activeSlide);
+    if(active === images.length - 1){
         active = 0;
     }else{
         active++;
     }
-    elements[active].classList.add('active');
+    const arrayImages = document.querySelectorAll('.slide');
+    for (let i = 0; i < images.length; i++) {
+        const checkImages = arrayImages[i];
+        console.log(checkImages);
+        const checkImagesId = checkImages.getAttribute('divId');
+        console.log(checkImagesId);
+        if(checkImagesId === active){
+            checkImages.classList.add('active');
+        }
+    }
 }
 
 function prevSlide(){
-    elements[active].classList.remove('active');
+    // images[active].classList.remove('active');
     if(active===0){
-        active = img.length - 1;
+        active = images.length - 1;
     }else{
         active--;
     }
-    elements[active].classList.add('active');
+    images[active].classList.add('active');
 }
 
-slider.addEventListener('mouseenter', function(){
-    clearInterval(autoplay);
-});
+// slider.addEventListener('mouseenter', function(){
+//     clearInterval(autoplay);
+// });
 
-slider.addEventListener('mouseleave', function(){
-    autoplay = setInterval(nextSlide, 3000);
-});
+// slider.addEventListener('mouseleave', function(){
+//     autoplay = setInterval(nextSlide, 3000);
+// });
